@@ -16,8 +16,17 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name',
+        'email',
+        'password',
+        'type',
+        'birthdate',
+        'genero', 
+        'cedula',
+        'apellido'
     ];
+
+   
 
     /**
      * The attributes that should be hidden for arrays.
@@ -36,4 +45,23 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    //Relacion:: Usuario posee Telefono
+    public function phone(){
+        return $this->hasOne(Phone::class);
+    }
+    //Relacion:: Usuario posee una Localizacion
+    public function location(){
+        return $this->hasOne(Location::class);
+    }
+    //Relacion:: Usuario posee un conjunto de Redes Sociales
+    public function social(){
+        return $this->hasOne(Social::class);
+    }
+
+    public function driver(){       
+            return $this->hasOne(Drivers::class);
+      
+            
+    }
 }
